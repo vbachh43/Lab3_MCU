@@ -102,6 +102,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
 	  fsm_automatic_run();
 	  fsm_manual_run();
@@ -201,9 +202,17 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_RED_Pin|LED_YELLOW_Pin|LED_GREEN_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, LED_RED_A_Pin|LED_YELLOW_A_Pin|LED_GREEN_A_Pin|LED_RED_Pin
+                          |LED_YELLOW_Pin|LED_GREEN_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, sega_Pin|segb_Pin|segc_Pin|segb_a_Pin
+                          |segc_a_Pin|segd_a_Pin|sege_a_Pin|segf_a_Pin
+                          |segg_a_Pin|segd_Pin|sege_Pin|segf_Pin
+                          |segg_Pin|sega_a_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : Button1_Pin */
   GPIO_InitStruct.Pin = Button1_Pin;
@@ -211,12 +220,27 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(Button1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LED_RED_Pin LED_YELLOW_Pin LED_GREEN_Pin */
-  GPIO_InitStruct.Pin = LED_RED_Pin|LED_YELLOW_Pin|LED_GREEN_Pin;
+  /*Configure GPIO pins : LED_RED_A_Pin LED_YELLOW_A_Pin LED_GREEN_A_Pin LED_RED_Pin
+                           LED_YELLOW_Pin LED_GREEN_Pin */
+  GPIO_InitStruct.Pin = LED_RED_A_Pin|LED_YELLOW_A_Pin|LED_GREEN_A_Pin|LED_RED_Pin
+                          |LED_YELLOW_Pin|LED_GREEN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : sega_Pin segb_Pin segc_Pin segb_a_Pin
+                           segc_a_Pin segd_a_Pin sege_a_Pin segf_a_Pin
+                           segg_a_Pin segd_Pin sege_Pin segf_Pin
+                           segg_Pin sega_a_Pin */
+  GPIO_InitStruct.Pin = sega_Pin|segb_Pin|segc_Pin|segb_a_Pin
+                          |segc_a_Pin|segd_a_Pin|sege_a_Pin|segf_a_Pin
+                          |segg_a_Pin|segd_Pin|sege_Pin|segf_Pin
+                          |segg_Pin|sega_a_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 

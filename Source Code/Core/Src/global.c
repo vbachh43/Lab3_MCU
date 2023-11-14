@@ -8,6 +8,7 @@
 #include "global.h"
 
 int status = 0;
+int timer_7seg = 0;
 
 void set_LED_Init(){
 	HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);

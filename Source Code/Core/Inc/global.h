@@ -22,6 +22,7 @@
 #define MAN_YELLOW    14
 
 extern int status;
+extern int timer_7seg;
 
 void set_LED_Init();
 void set_LED_Red();
