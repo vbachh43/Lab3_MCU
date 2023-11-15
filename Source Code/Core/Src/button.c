@@ -72,7 +72,7 @@ void getKey1Input(){
 		// Nhan de: Key_Reg2 == RESET
 		else{
 			Pressed_Key_Timer --;
-			if (Pressed_Key_Timer == 0){
+			if (Pressed_Key_Timer <= 0){
 				// TO DO
 				if (Key_Reg2 == PRESSED_STATE){
 					button1_flag = 1;

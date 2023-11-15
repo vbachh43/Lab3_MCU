@@ -27,6 +27,8 @@
 #include "button.h"
 #include "fsm_automatic.h"
 #include "fsm_manual.h"
+#include "display_7seg.h"
+#include "update_mode1.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -98,15 +100,46 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  mode = 1;
   status = INIT;
+  status_a = INIT_a;
+  setTimer1(50);
+  setTimer3(50);
 
+  int index_led = 0;
+  setTimer2(50);
+
+  prescaler_blink = htim2.Init.Prescaler;
+  period_blink = htim2.Init.Period;
+
+  int led_buffer[4] = {0 , 1 , 0 , 3};
+
+  duration_red = 5;
+  duration_green = 3;
+  duration_yellow = 2;
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 	  fsm_automatic_run();
+	  fsm_automatic_run_a();
 	  fsm_manual_run();
+	  if (mode == 1){
+		  update_mode1();
+	  }
+
+	if (timer2_flag == 1){
+		setTimer2(50);
+		// TO DO
+		update_7seg(index_led);
+		if (index_led <= 3){
+			index_led ++;
+			if (index_led > 3){
+				index_led = 0;
+			}
+		}
+	}
   }
   /* USER CODE END 3 */
 }
@@ -209,10 +242,9 @@ static void MX_GPIO_Init(void)
                           |LED_YELLOW_Pin|LED_GREEN_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, sega_Pin|segb_Pin|segc_Pin|segb_a_Pin
-                          |segc_a_Pin|segd_a_Pin|sege_a_Pin|segf_a_Pin
-                          |segg_a_Pin|segd_Pin|sege_Pin|segf_Pin
-                          |segg_Pin|sega_a_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, sega_Pin|segb_Pin|segc_Pin|EN2_Pin
+                          |EN3_Pin|segd_Pin|sege_Pin|segf_Pin
+                          |segg_Pin|EN0_Pin|EN1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : LED_RED_A_Pin LED_YELLOW_A_Pin LED_GREEN_A_Pin LED_RED_Pin
                            LED_YELLOW_Pin LED_GREEN_Pin */
@@ -223,14 +255,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : sega_Pin segb_Pin segc_Pin segb_a_Pin
-                           segc_a_Pin segd_a_Pin sege_a_Pin segf_a_Pin
-                           segg_a_Pin segd_Pin sege_Pin segf_Pin
-                           segg_Pin sega_a_Pin */
-  GPIO_InitStruct.Pin = sega_Pin|segb_Pin|segc_Pin|segb_a_Pin
-                          |segc_a_Pin|segd_a_Pin|sege_a_Pin|segf_a_Pin
-                          |segg_a_Pin|segd_Pin|sege_Pin|segf_Pin
-                          |segg_Pin|sega_a_Pin;
+  /*Configure GPIO pins : sega_Pin segb_Pin segc_Pin EN2_Pin
+                           EN3_Pin segd_Pin sege_Pin segf_Pin
+                           segg_Pin EN0_Pin EN1_Pin */
+  GPIO_InitStruct.Pin = sega_Pin|segb_Pin|segc_Pin|EN2_Pin
+                          |EN3_Pin|segd_Pin|sege_Pin|segf_Pin
+                          |segg_Pin|EN0_Pin|EN1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

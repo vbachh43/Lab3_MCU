@@ -76,18 +76,10 @@ void Error_Handler(void);
 #define segb_GPIO_Port GPIOB
 #define segc_Pin GPIO_PIN_2
 #define segc_GPIO_Port GPIOB
-#define segb_a_Pin GPIO_PIN_10
-#define segb_a_GPIO_Port GPIOB
-#define segc_a_Pin GPIO_PIN_11
-#define segc_a_GPIO_Port GPIOB
-#define segd_a_Pin GPIO_PIN_12
-#define segd_a_GPIO_Port GPIOB
-#define sege_a_Pin GPIO_PIN_13
-#define sege_a_GPIO_Port GPIOB
-#define segf_a_Pin GPIO_PIN_14
-#define segf_a_GPIO_Port GPIOB
-#define segg_a_Pin GPIO_PIN_15
-#define segg_a_GPIO_Port GPIOB
+#define EN2_Pin GPIO_PIN_10
+#define EN2_GPIO_Port GPIOB
+#define EN3_Pin GPIO_PIN_11
+#define EN3_GPIO_Port GPIOB
 #define BUTTON_1_Pin GPIO_PIN_11
 #define BUTTON_1_GPIO_Port GPIOA
 #define BUTTON_2_Pin GPIO_PIN_12
@@ -102,8 +94,10 @@ void Error_Handler(void);
 #define segf_GPIO_Port GPIOB
 #define segg_Pin GPIO_PIN_6
 #define segg_GPIO_Port GPIOB
-#define sega_a_Pin GPIO_PIN_9
-#define sega_a_GPIO_Port GPIOB
+#define EN0_Pin GPIO_PIN_8
+#define EN0_GPIO_Port GPIOB
+#define EN1_Pin GPIO_PIN_9
+#define EN1_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -12,6 +12,6 @@
 #include "main.h"
 
 void display_7seg();
-void display_7seg_a();
+void update_7seg();
 
 #endif /* INC_DISPLAY_7SEG_H_ */
