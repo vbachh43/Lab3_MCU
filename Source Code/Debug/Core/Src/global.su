@@ -1,4 +1,4 @@
-global.c:13:6:set_LED_Init	8	static
-global.c:19:6:set_LED_Red	8	static
-global.c:25:6:set_LED_Green	8	static
-global.c:31:6:set_LED_Yellow	8	static
+global.c:14:6:set_LED_Init	8	static
+global.c:24:6:set_LED_Red	8	static
+global.c:34:6:set_LED_Green	8	static
+global.c:44:6:set_LED_Yellow	8	static

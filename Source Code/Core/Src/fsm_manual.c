@@ -21,6 +21,7 @@ void fsm_manual_run(){
 				status = MAN_GREEN;
 				setTimer1(300);
 			}
+
 			break;
 
 		case MAN_GREEN:

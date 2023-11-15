@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "software_timer.h"
+#include "global.h"
 #include "button.h"
 #include "fsm_automatic.h"
 #include "fsm_manual.h"
@@ -200,7 +201,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
@@ -213,12 +213,6 @@ static void MX_GPIO_Init(void)
                           |segc_a_Pin|segd_a_Pin|sege_a_Pin|segf_a_Pin
                           |segg_a_Pin|segd_Pin|sege_Pin|segf_Pin
                           |segg_Pin|sega_a_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : Button1_Pin */
-  GPIO_InitStruct.Pin = Button1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(Button1_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LED_RED_A_Pin LED_YELLOW_A_Pin LED_GREEN_A_Pin LED_RED_Pin
                            LED_YELLOW_Pin LED_GREEN_Pin */
@@ -242,13 +236,22 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : BUTTON_1_Pin BUTTON_2_Pin BUTTON_3_Pin */
+  GPIO_InitStruct.Pin = BUTTON_1_Pin|BUTTON_2_Pin|BUTTON_3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
 }
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	getKey1Input();
+	getKey2Input();
+	getKey3Input();
 	timerRun();
-	getKeyInput();
 }
+
 /* USER CODE END 4 */
 
 /**

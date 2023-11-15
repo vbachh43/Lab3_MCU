@@ -9,8 +9,8 @@
 #define INC_GLOBAL_H_
 
 #include "software_timer.h"
-#include "button.h"
 #include "main.h"
+#include "button.h"
 
 #define INIT          1
 #define AUTO_RED      2
@@ -23,6 +23,7 @@
 
 extern int status;
 extern int timer_7seg;
+extern int button1_flag, button2_flag, button3_flag;
 
 void set_LED_Init();
 void set_LED_Red();

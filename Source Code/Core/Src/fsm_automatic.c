@@ -11,7 +11,7 @@ void fsm_automatic_run(){
 	case INIT:
 		// TO DO
 		set_LED_Init();
-		setTimer1(100);
+		setTimer1(200);
 
 		status = AUTO_RED;
 		setTimer1(500);
